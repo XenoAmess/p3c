@@ -35,7 +35,7 @@
         <!--maven plugins versions-->
         <versions-maven-plugin.version>2.17.1</versions-maven-plugin.version>
         <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
-        <maven-gpg-plugin.version>3.2.5</maven-gpg-plugin.version>
+        <maven-gpg-plugin.version>3.2.6</maven-gpg-plugin.version>
         <maven-pmd-plugin.version>3.21.2</maven-pmd-plugin.version>
         <maven-compiler-plugin.version>3.12.1</maven-compiler-plugin.version>
         <maven-assembly-plugin.version>3.2.0</maven-assembly-plugin.version>
