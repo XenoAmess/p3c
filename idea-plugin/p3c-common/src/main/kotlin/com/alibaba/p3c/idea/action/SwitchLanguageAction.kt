@@ -20,6 +20,7 @@ import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.smartfox.idea.common.util.BalloonNotifications
 import com.alibaba.smartfox.idea.common.util.getService
 import com.intellij.notification.NotificationListener
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.application.ex.ApplicationManagerEx
@@ -48,4 +49,9 @@ class SwitchLanguageAction : AnAction(), DumbAware {
     override fun update(e: AnActionEvent) {
         e.presentation.text = P3cBundle.getMessage("$textKey.cur_${p3cConfig.locale}")
     }
+
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.EDT
+    }
+
 }

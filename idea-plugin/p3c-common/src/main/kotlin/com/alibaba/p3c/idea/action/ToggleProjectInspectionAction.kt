@@ -20,6 +20,7 @@ import com.alibaba.p3c.idea.compatible.inspection.Inspections
 import com.alibaba.p3c.idea.config.SmartFoxProjectConfig
 import com.alibaba.p3c.idea.i18n.P3cBundle
 import com.alibaba.p3c.idea.inspection.AliBaseInspection
+import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.components.ServiceManager
@@ -56,4 +57,9 @@ class ToggleProjectInspectionAction : AnAction() {
             P3cBundle.getMessage("$textKey.close")
         }
     }
+
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.BGT
+    }
+
 }
