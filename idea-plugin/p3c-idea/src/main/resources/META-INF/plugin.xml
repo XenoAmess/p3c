@@ -29,7 +29,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.2.2.0x
+        <ul>2.2.3.0x-SNAPSHOT
+            <li>Fix 2024.1 compatibility issue</li>
+        </ul>
+        <ul>2.2.3.0x-SNAPSHOT
             <li>Fix 2023.2 compatibility issue</li>
         </ul>
         <ul>2.2.1.0x
@@ -233,7 +236,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="232.8660.185"/>
+    <idea-version since-build="2024.1"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>
