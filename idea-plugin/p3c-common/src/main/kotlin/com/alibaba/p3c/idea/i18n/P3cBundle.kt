@@ -19,9 +19,10 @@ import com.alibaba.p3c.idea.config.P3cConfig
 import com.xenoamess.p3c.pmd.I18nResources
 import com.alibaba.smartfox.idea.common.util.getService
 import com.intellij.AbstractBundle
-import com.intellij.CommonBundle
+import com.intellij.openapi.application.CachedSingletonsRegistry
 import java.util.Locale
 import java.util.ResourceBundle
+import java.util.function.Supplier
 
 /**
  *
@@ -30,15 +31,23 @@ import java.util.ResourceBundle
  * @date 2017/06/20
  */
 object P3cBundle {
-    private val p3cConfig = P3cConfig::class.java.getService()
-    private val resourceBundle = ResourceBundle.getBundle("messages.P3cBundle",
-            Locale(p3cConfig.locale), I18nResources.XmlControl())
+    private val p3cConfigSupplier: Supplier<P3cConfig> =
+        CachedSingletonsRegistry.lazy {
+            P3cConfig::class.java.getService()
+        }
+    private val resourceBundleSupplier =
+        CachedSingletonsRegistry.lazy {
+            ResourceBundle.getBundle(
+                "messages.P3cBundle",
+                Locale(p3cConfigSupplier.get().locale), I18nResources.XmlControl()
+            )
+        }
 
     fun getMessage(key: String): String {
-        return resourceBundle.getString(key).trim()
+        return resourceBundleSupplier.get().getString(key).trim()
     }
 
     fun message(key: String, vararg params: Any): String {
-        return AbstractBundle.message(resourceBundle, key, *params).trim()
+        return AbstractBundle.message(resourceBundleSupplier.get(), key, *params).trim()
     }
 }

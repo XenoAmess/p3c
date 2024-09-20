@@ -15,7 +15,7 @@
  */
 package com.alibaba.smartfox.idea.common.util
 
-import com.intellij.openapi.components.ServiceManager
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 
 /**
@@ -25,9 +25,9 @@ import com.intellij.openapi.project.Project
  * @date 2017/06/19
  */
 fun <T> Class<T>.getService(): T {
-    return ServiceManager.getService(this)
+    return ApplicationManager.getApplication().getService(this)
 }
 
 fun <T> Class<T>.getService(project: Project): T {
-    return ServiceManager.getService(project, this)
+    return project.getService(this)
 }
