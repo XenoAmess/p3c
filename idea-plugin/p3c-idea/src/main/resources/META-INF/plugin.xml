@@ -29,7 +29,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.2.3.0x
+        <ul>2.2.4.0x-SNAPSHOT
             <li>Fix 2024.1 compatibility issue</li>
             <li>Fix 2024.2 compatibility issue</li>
             <li>upgrade gradle & building jdk & intellij plugin version</li>
