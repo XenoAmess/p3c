@@ -5,7 +5,7 @@ call ./mvnw clean deploy -Dmaven.javadoc.skip=false -e -X -Psonatype-oss-release
 cd ../
 cd ./idea-plugin
 
-set JAVA_HOME=C:\jdk-17\
+set JAVA_HOME=C:\jdk-21\
 
 cd ./p3c-common
 rem call ../gradlew clean install sign uploadArchives -DossrhUsername="%ossrhUsername%" -DossrhPassword="%ossrhPassword%"

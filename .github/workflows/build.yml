@@ -24,24 +24,24 @@ jobs:
     strategy:
       matrix:
         os: [ windows-latest , ubuntu-latest , macos-latest ]
-        java: [ 17 ]
+        java: [ 21 ]
         experimental: [ false ]
 
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ~/.m2
           key: ${{ runner.os }}-gradle-m2-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ~/.gradle/caches/
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/build.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ~/.gradle/wrapper/
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/build.gradle') }}

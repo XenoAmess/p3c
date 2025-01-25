@@ -29,6 +29,11 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.2.3.0x
+            <li>Fix 2024.1 compatibility issue</li>
+            <li>Fix 2024.2 compatibility issue</li>
+            <li>upgrade gradle & building jdk & intellij plugin version</li>
+        </ul>
         <ul>2.2.2.0x
             <li>Fix 2023.2 compatibility issue</li>
         </ul>
@@ -233,7 +238,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="232.8660.185"/>
+    <idea-version since-build="241.14494.240"/>
 
     <depends optional="true" config-file="pluginWithJava.xml">com.intellij.modules.java</depends>
     <depends>com.intellij.modules.platform</depends>

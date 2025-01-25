@@ -30,26 +30,18 @@ import com.intellij.codeInspection.InspectionsBundle
 import com.intellij.codeInspection.ex.GlobalInspectionContextImpl
 import com.intellij.codeInspection.ex.InspectionManagerEx
 import com.intellij.codeInspection.ex.InspectionToolWrapper
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
-import com.intellij.openapi.actionSystem.CommonDataKeys
+import com.intellij.openapi.actionSystem.*
 import com.intellij.openapi.diagnostic.Logger
 import com.intellij.openapi.module.Module
-import com.intellij.openapi.module.ModuleManager
 import com.intellij.openapi.module.ModuleUtilCore
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.VfsUtilCore
 import com.intellij.openapi.vfs.VirtualFile
-import com.intellij.openapi.wm.ToolWindowId
-import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileSystemItem
 import com.intellij.psi.PsiManager
 import java.awt.event.KeyEvent
-import kotlin.reflect.full.companionObject
-import kotlin.reflect.full.companionObjectInstance
-import kotlin.reflect.full.functions
 
 /**
  * @author caikang
@@ -222,4 +214,9 @@ class AliInspectionAction : AnAction() {
             return PmdGlobalInspectionContextImpl(managerEx.project, managerEx.contentManager, projectScopeSelected)
         }
     }
+
+    override fun getActionUpdateThread(): ActionUpdateThread {
+        return ActionUpdateThread.BGT
+    }
+
 }

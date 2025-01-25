@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.13.3"
+    id "org.jetbrains.intellij" version "1.17.4"
 
-    id "com.github.ben-manes.versions" version "0.50.0"
+    id "com.github.ben-manes.versions" version "0.51.0"
 }
 apply plugin: 'kotlin'
 apply plugin: 'idea'
