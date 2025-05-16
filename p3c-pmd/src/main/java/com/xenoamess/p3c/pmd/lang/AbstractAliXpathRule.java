@@ -18,7 +18,6 @@ package com.xenoamess.p3c.pmd.lang;
 import com.xenoamess.p3c.pmd.I18nResources;
 import com.xenoamess.p3c.pmd.lang.java.util.ViolationUtils;
 import net.sourceforge.pmd.lang.ast.Node;
-import net.sourceforge.pmd.lang.rule.RuleViolationFactory;
 import net.sourceforge.pmd.lang.rule.XPathRule;
 
 /**
@@ -54,7 +53,7 @@ public abstract class AbstractAliXpathRule extends XPathRule {
     }
 
     /**
-     * @see RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
+     * @see net.sourceforge.pmd.lang.rule.RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
      * Object[])
      */
     @Override
@@ -66,7 +65,7 @@ public abstract class AbstractAliXpathRule extends XPathRule {
     }
 
     /**
-     * @see RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
+     * @see net.sourceforge.pmd.lang.rule.RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
      * Object[])
      */
     @Override
@@ -78,7 +77,7 @@ public abstract class AbstractAliXpathRule extends XPathRule {
     }
 
     /**
-     * @see RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
+     * @see net.sourceforge.pmd.lang.rule.RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
      * Object[])
      */
     @Override
@@ -90,7 +89,7 @@ public abstract class AbstractAliXpathRule extends XPathRule {
     }
 
     /**
-     * @see RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
+     * @see net.sourceforge.pmd.lang.rule.RuleViolationFactory#addViolation(net.sourceforge.pmd.RuleContext, net.sourceforge.pmd.Rule, Node, String,
      * Object[])
      */
     @Override
