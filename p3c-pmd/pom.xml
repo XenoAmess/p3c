@@ -46,7 +46,7 @@
         <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
         <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
         <maven-surefire-plugin.version>3.5.4</maven-surefire-plugin.version>
-        <animal-sniffer-maven-plugin.version>1.24</animal-sniffer-maven-plugin.version>
+        <animal-sniffer-maven-plugin.version>1.26</animal-sniffer-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <log4j.version>2.25.2</log4j.version>
         <slf4j.version>1.7.36</slf4j.version>
