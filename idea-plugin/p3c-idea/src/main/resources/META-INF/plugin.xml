@@ -29,7 +29,10 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.2.4.0x-SNAPSHOT
+        <ul>2.2.4.0x
+            <li>fix https://github.com/XenoAmess/p3c/issues/778</li>
+        </ul>
+        <ul>2.2.3.0x
             <li>Fix 2024.1 compatibility issue</li>
             <li>Fix 2024.2 compatibility issue</li>
             <li>upgrade gradle & building jdk & intellij plugin version</li>
