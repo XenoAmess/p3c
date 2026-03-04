@@ -112,7 +112,11 @@ class AliLocalInspectionToolProvider : InspectionToolProvider {
         }
 
         init {
-            I18nResources.changeLanguage(P3cConfig::class.java.getService().locale)
+            I18nResources.setLanguageSupplier(
+                {
+                    P3cConfig::class.java.getService().locale
+                }
+            )
             Thread.currentThread().contextClassLoader = AliLocalInspectionToolProvider::class.java.classLoader
             initPmdInspection()
             initNativeInspection()

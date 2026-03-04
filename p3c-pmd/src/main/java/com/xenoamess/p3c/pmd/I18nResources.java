@@ -16,6 +16,7 @@
 package com.xenoamess.p3c.pmd;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -31,31 +32,73 @@ import java.util.MissingResourceException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.ResourceBundle.Control;
+import java.util.function.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author caikang
  * @date 2017/05/24
  */
 public class I18nResources {
+
+    private static final Logger LOG = Logger.getLogger(I18nResources.class.getName());
+
     private static final String XML_LITERAL = "xml";
 
     private static final String LANG = System.getProperty("pmd.language", "zh");
 
+    @Nullable
     private static Locale currentLocale;
 
     private static ResourceBundle resourceBundle = changeLanguage(LANG);
+
+    @Nullable
+    public static Supplier<String> languageSupplier = null;
+
+    @Nullable
+    public static Supplier<String> getLanguageSupplier() {
+        return languageSupplier;
+    }
+
+    public static void setLanguageSupplier(@Nullable Supplier<String> languageSupplier) {
+        I18nResources.languageSupplier = languageSupplier;
+    }
 
     public static ResourceBundle changeLanguage(String language) {
         Locale locale = Locale.CHINESE.getLanguage().equals(language) ? Locale.CHINESE : Locale.ENGLISH;
         return changeLanguage(locale);
     }
 
-    public static ResourceBundle changeLanguage(Locale locale) {
+    @NotNull
+    public static ResourceBundle changeLanguage(@NotNull Locale locale) {
         if (currentLocale != null && currentLocale.equals(locale)) {
-            return resourceBundle;
+            if (resourceBundle != null) {
+                return resourceBundle;
+            } else {
+                resourceBundle = ResourceBundle.getBundle("messages", locale, new XmlControl());
+                return resourceBundle;
+            }
         }
         currentLocale = locale;
         resourceBundle = ResourceBundle.getBundle("messages", locale, new XmlControl());
+        return resourceBundle;
+    }
+
+    public static ResourceBundle getResourceBundle() {
+        if (currentLocale != null && resourceBundle != null) {
+            return resourceBundle;
+        }
+        if (languageSupplier != null) {
+            try {
+                String language = languageSupplier.get();
+                if (language != null) {
+                    return changeLanguage(language);
+                }
+            } catch (Exception e) {
+                LOG.log(Level.WARNING, "languageSupplier invoke failed", e);
+            }
+        }
         return resourceBundle;
     }
 
@@ -65,7 +108,7 @@ public class I18nResources {
             return "";
         }
         try {
-            return resourceBundle.getString(key).trim();
+            return getResourceBundle().getString(key).trim();
         } catch (MissingResourceException e) {
             return key;
         }
@@ -85,7 +128,7 @@ public class I18nResources {
             return "";
         }
         try {
-            return resourceBundle.getString(key).trim();
+            return getResourceBundle().getString(key).trim();
         } catch (MissingResourceException e) {
             return key;
         }

@@ -66,7 +66,11 @@ object RuleInspectionUtils {
     private val displayLevelMap: Map<String, HighlightDisplayLevel>
 
     init {
-        I18nResources.changeLanguage(P3cConfig::class.java.getService().locale)
+        I18nResources.setLanguageSupplier(
+            {
+                P3cConfig::class.java.getService().locale
+            }
+        )
         val builder = ImmutableMap.builder<String, String>()
         val messageBuilder = ImmutableMap.builder<String, String>()
         val displayLevelBuilder = ImmutableMap.builder<String, HighlightDisplayLevel>()
