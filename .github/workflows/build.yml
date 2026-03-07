@@ -63,7 +63,7 @@ jobs:
           ./gradlew buildPlugin -s
 
       - name: Upload Plugin Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: p3c-idea-plugin-${{ matrix.os }}-${{ matrix.java }}
           path: idea-plugin/p3c-idea/build/distributions/*.zip
