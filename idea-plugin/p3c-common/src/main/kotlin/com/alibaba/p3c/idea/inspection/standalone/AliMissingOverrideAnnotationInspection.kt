@@ -117,7 +117,7 @@ class AliMissingOverrideAnnotationInspection : MissingOverrideAnnotationInspecti
             ) {
                 return
             }
-            this.registerMethodError(method, *arrayOf<Any>(method, true, true))
+            this.registerMethodError(method, *arrayOf<Any>(true, true))
         }
 
         private fun hasOverrideAnnotation(element: PsiModifierListOwner): Boolean {
