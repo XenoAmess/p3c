@@ -51,7 +51,9 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
      */
     constructor(any: Any?) : this()
 
-    val familyName = "$replaceWith equals"
+    fun familyName(): String {
+        return replaceWith() + " equals"
+    }
 
     override fun buildErrorString(vararg infos: Any?): String {
         return P3cBundle.getMessage("com.alibaba.p3c.idea.inspection.rule.WrapperTypeEqualityRule.errMsg")
@@ -83,12 +85,12 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
 
     public override fun buildFix(vararg infos: Any): InspectionGadgetsFix? {
         if (infos.isEmpty()) {
-            return DecorateInspectionGadgetsFix(EqualityToEqualsFix(), familyName)
+            return DecorateInspectionGadgetsFix(EqualityToEqualsFix(), familyName())
         }
         val type = infos[0] as PsiArrayType
         val componentType = type.componentType
-        val fix = ArrayEqualityFix(componentType is PsiArrayType, familyName)
-        return DecorateInspectionGadgetsFix(fix, fix.name, familyName)
+        val fix = ArrayEqualityFix(componentType is PsiArrayType, familyName())
+        return DecorateInspectionGadgetsFix(fix, fix.name, familyName())
     }
 
     private inner class ObjectComparisonVisitor : BaseInspectionVisitor() {
@@ -130,9 +132,9 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
 
         override fun getName(): String {
             return if (deepEquals) {
-                "$replaceWith 'Arrays.deepEquals()'"
+                replaceWith() + " 'Arrays.deepEquals()'"
             } else {
-                "$replaceWith 'Arrays.equals()'"
+                replaceWith() + " 'Arrays.equals()'"
             }
         }
 
@@ -183,6 +185,9 @@ class AliWrapperTypeEqualityInspection : BaseInspection, AliBaseInspection {
     }
 
     companion object {
-        val replaceWith = P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.replace.with")
+        @JvmStatic
+        fun replaceWith(): String {
+            return P3cBundle.getMessage("com.alibaba.p3c.idea.quickfix.replace.with")
+        }
     }
 }
