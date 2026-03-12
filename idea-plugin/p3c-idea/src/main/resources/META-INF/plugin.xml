@@ -29,6 +29,9 @@
     ]]></description>
 
     <change-notes><![CDATA[
+        <ul>2.2.4.3x
+            <li>fix https://github.com/XenoAmess/p3c/issues/784</li>
+        </ul>
         <ul>2.2.4.2x
             <li>fix https://github.com/XenoAmess/p3c/issues/782 (thanks to zzqo)</li>
         </ul>
