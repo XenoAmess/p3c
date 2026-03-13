@@ -148,4 +148,9 @@ class AliProjectComponent : AliBaseProjectComponent {
             }
         }
     }
+
+    /**
+     * Get the virtual file listener for cleanup purposes.
+     */
+    fun getVirtualFileListener(): VirtualFileListener = listener
 }

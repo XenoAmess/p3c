@@ -166,6 +166,15 @@ class AliPmdInspectionInvoker(
                 TimeUnit.MILLISECONDS
             ).build<FileRule, AliPmdInspectionInvoker>()!!
         }
+
+        /**
+         * Clear all file violations cache for dynamic plugin unload.
+         */
+        fun clearAllFileViolationsCache() {
+            if (::invokers.isInitialized) {
+                invokers.invalidateAll()
+            }
+        }
     }
 }
 

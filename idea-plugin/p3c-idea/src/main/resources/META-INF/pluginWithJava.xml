@@ -49,5 +49,15 @@
                 implementation="com.alibaba.p3c.idea.inspection.AliLocalInspectionToolProvider"/>
         <postStartupActivity
                 implementation="com.alibaba.p3c.idea.activity.CommonSettingsApplicationStartupActivity"/>
+        <projectConfigurable
+                instance="com.alibaba.p3c.idea.config.P3cConfigurable"
+                id="p3c.settings"
+                displayName="P3C Code Guidelines"
+                nonDefaultProject="true"/>
+        <notificationGroup id="P3C Notifications" displayType="BALLOON"/>
     </extensions>
+    <listeners>
+        <listener class="com.alibaba.p3c.idea.lifecycle.P3cPluginLifecycle"
+                  topic="com.intellij.ide.plugins.DynamicPluginListener"/>
+    </listeners>
 </idea-plugin>

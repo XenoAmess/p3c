@@ -284,6 +284,18 @@ class SourceCodeProcessor(
             userTriggerNodeCache.invalidateAll()
         }
 
+        /**
+         * Clear all caches for dynamic plugin unload.
+         */
+        fun clearAllCaches() {
+            if (::onlyTheFlyCache.isInitialized) {
+                onlyTheFlyCache.invalidateAll()
+            }
+            if (::userTriggerNodeCache.isInitialized) {
+                userTriggerNodeCache.invalidateAll()
+            }
+        }
+
         fun getNode(file: String, isOnTheFly: Boolean): Node? {
             return if (isOnTheFly) onlyTheFlyCache.getIfPresent(file) else userTriggerNodeCache.getIfPresent(file)
         }

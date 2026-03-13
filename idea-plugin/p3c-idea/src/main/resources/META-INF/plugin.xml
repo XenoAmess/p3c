@@ -1,4 +1,4 @@
-<idea-plugin>
+<idea-plugin require-restart="false">
     <id>com.alibaba.p3c.xenoamess</id>
     <name>Alibaba Java Coding Guidelines(XenoAmess TPM)</name>
     <vendor

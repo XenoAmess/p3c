@@ -29,6 +29,23 @@ import com.intellij.util.xmlb.XmlSerializerUtil
 class SmartFoxProjectConfig : PersistentStateComponent<SmartFoxProjectConfig> {
     var projectInspectionClosed = false
 
+    /**
+     * Global plugin disable state for dynamic plugin support.
+     * When true, all P3C inspections are completely disabled without IDE restart.
+     */
+    var pluginGloballyDisabled = false
+
+    /**
+     * Individual rule disable list.
+     * Contains short names of disabled rules.
+     */
+    var disabledRules: MutableSet<String> = mutableSetOf()
+
+    /**
+     * Enable/disable real-time inspection.
+     */
+    var realtimeInspectionEnabled = true
+
     override fun getState(): SmartFoxProjectConfig? {
         return this
     }

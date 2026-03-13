@@ -8,6 +8,8 @@
     <entry key="com.alibaba.p3c.idea.action.AliInspectionAction.text">Alibaba Coding Guidelines Analyze</entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.close">Close inspection on the fly</entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">Open inspection on the fly</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.disabled.notification">P3C plugin has been disabled (no IDE restart needed)</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.enabled.notification">P3C plugin has been enabled (no IDE restart needed)</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.delete_$">Delete starting '$' or '_'</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.generate.author">Add/Extract @author</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore">Refactor to upper case with underscore</entry>

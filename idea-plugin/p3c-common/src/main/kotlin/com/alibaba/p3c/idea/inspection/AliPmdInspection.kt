@@ -15,6 +15,7 @@
  */
 package com.alibaba.p3c.idea.inspection
 
+import com.alibaba.p3c.idea.config.SmartFoxProjectConfig
 import com.alibaba.p3c.idea.inspection.AliLocalInspectionToolProvider.ShouldInspectChecker
 import com.alibaba.p3c.idea.util.NumberConstants
 import com.alibaba.p3c.idea.util.QuickFixes
@@ -23,6 +24,7 @@ import com.intellij.codeInspection.InspectionManager
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
+import com.intellij.openapi.components.ServiceManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import net.sourceforge.pmd.Rule
@@ -65,6 +67,22 @@ class AliPmdInspection(private val ruleName: String) : LocalInspectionTool(),
         file: PsiFile, manager: InspectionManager,
         isOnTheFly: Boolean
     ): Array<ProblemDescriptor>? {
+        // Check if plugin is globally disabled (for dynamic plugin support)
+        val config = ServiceManager.getService(SmartFoxProjectConfig::class.java)
+        if (config.pluginGloballyDisabled) {
+            return null
+        }
+
+        // Check if real-time inspection is disabled (for on-the-fly checks)
+        if (isOnTheFly && !config.realtimeInspectionEnabled) {
+            return null
+        }
+
+        // Check individual rule disable list
+        if (config.disabledRules.contains(getShortName())) {
+            return null
+        }
+
         if (!shouldInspectChecker.shouldInspect(file)) {
             return null
         }

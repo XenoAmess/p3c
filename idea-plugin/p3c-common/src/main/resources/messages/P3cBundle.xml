@@ -8,6 +8,8 @@
     <entry key="com.alibaba.p3c.idea.action.AliInspectionAction.text">编码规约扫描</entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.close">关闭实时检测功能</entry>
     <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.text.open">打开实时检测功能</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.disabled.notification">P3C 插件已禁用（无需重启 IDE）</entry>
+    <entry key="com.alibaba.p3c.idea.action.ToggleProjectInspectionAction.enabled.notification">P3C 插件已启用（无需重启 IDE）</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.delete_$">删除开头的 $ 或者 _</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.generate.author">添加/提取 @author</entry>
     <entry key="com.alibaba.p3c.idea.quickfix.field.to.upperCaseWithUnderscore">修正为以下划线分隔大写模式</entry>
