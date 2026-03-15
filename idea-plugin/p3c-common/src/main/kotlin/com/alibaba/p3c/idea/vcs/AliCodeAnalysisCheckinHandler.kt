@@ -40,7 +40,6 @@ import com.intellij.openapi.vcs.CheckinProjectPanel
 import com.intellij.openapi.vcs.VcsBundle
 import com.intellij.openapi.vcs.changes.CommitExecutor
 import com.intellij.openapi.vcs.checkin.CheckinHandler
-import com.intellij.openapi.vcs.checkin.CheckinHandlerUtil
 import com.intellij.openapi.vcs.ui.RefreshableOnComponent
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.PsiDocumentManager
@@ -129,7 +128,7 @@ class AliCodeAnalysisCheckinHandler(
             return CheckinHandler.ReturnResult.COMMIT
         }
 
-        val virtualFiles = CheckinHandlerUtil.filterOutGeneratedAndExcludedFiles(myCheckinPanel.virtualFiles, myProject)
+        val virtualFiles = filterOutGeneratedAndExcludedFiles(myCheckinPanel.virtualFiles, myProject)
         val hasViolation = hasViolation(virtualFiles, myProject)
         if (!hasViolation) {
             BalloonNotifications.showSuccessNotification(
@@ -157,13 +156,25 @@ class AliCodeAnalysisCheckinHandler(
 
     fun doAnalysis(project: Project, virtualFiles: Array<VirtualFile>) {
         val managerEx = InspectionManager.getInstance(project) as InspectionManagerEx
+        val fileList = java.util.ArrayList<VirtualFile>(virtualFiles.toList())
         val analysisScope = AnalysisScope(
                 project,
-                ArrayList(listOf(*virtualFiles))
+                fileList
         )
         val tools = Inspections.aliInspections(project) { it.tool is AliBaseInspection }
         AliInspectionAction.createContext(tools, managerEx, null, false, analysisScope)
             .doInspections(analysisScope)
+    }
+
+    private fun filterOutGeneratedAndExcludedFiles(files: Collection<VirtualFile>, project: Project): List<VirtualFile> {
+        return files.filter { file ->
+            !file.isDirectory && file.isValid && !isFileExcluded(file, project)
+        }
+    }
+
+    private fun isFileExcluded(file: VirtualFile, project: Project): Boolean {
+        val changeListManager = com.intellij.openapi.vcs.changes.ChangeListManager.getInstance(project)
+        return changeListManager.isIgnoredFile(file)
     }
 
     private fun hasViolation(virtualFiles: List<VirtualFile>, project: Project): Boolean {

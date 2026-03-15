@@ -1,10 +1,17 @@
 plugins {
     id 'java'
-    id "org.jetbrains.intellij" version "1.17.4"
+    id("org.jetbrains.intellij.platform") version "2.13.1"
 
     id "org.sonarqube" version "6.3.1.5724"
 
     id "com.github.ben-manes.versions" version "0.53.0"
+}
+
+repositories {
+    mavenCentral()
+    intellijPlatform {
+        defaultRepositories()
+    }
 }
 
 apply plugin: 'kotlin'
@@ -33,11 +40,6 @@ artifacts {
     archives sourcesJar
 }
 
-def myPlugins = []
-if (shouldIncludeJava(idea_version)) {
-    myPlugins.add('java')
-}
-
 sonarqube {
     properties {
         property "sonar.projectKey", "p3c-idea"
@@ -47,18 +49,19 @@ sonarqube {
     }
 }
 
-intellij {
-    version.set(idea_version)
-    plugins.set(myPlugins)
-    pluginName.set(plugin_name)
-    updateSinceUntilBuild.set(false)
-    sandboxDir.set("$project.buildDir/idea-sandbox/$idea_version")
+intellijPlatform {
+    pluginConfiguration {
+        name = plugin_name
+    }
+    buildSearchableOptions = false
 }
-version plugin_version
-
-ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 dependencies {
+    intellijPlatform {
+        create("IC", idea_version)
+        bundledPlugins(['com.intellij.java'])
+    }
+
     implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.33'
     implementation("com.xenoamess.p3c:p3c-pmd:$plugin_version") {
         exclude group: 'org.apache.logging.log4j'
@@ -69,6 +72,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$project.kotlin_version"
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
+
+version plugin_version
+
+ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 signing {
     required {
