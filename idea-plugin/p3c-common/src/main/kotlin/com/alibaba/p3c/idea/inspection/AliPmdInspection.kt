@@ -69,6 +69,9 @@ class AliPmdInspection(private val ruleName: String) : LocalInspectionTool(),
     ): Array<ProblemDescriptor>? {
         // Check if plugin is globally disabled (for dynamic plugin support)
         val config = ServiceManager.getService(SmartFoxProjectConfig::class.java)
+        if (config == null) {
+            return null
+        }
         if (config.pluginGloballyDisabled) {
             return null
         }
