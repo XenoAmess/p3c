@@ -94,3 +94,4 @@ out
 
 #versions-maven-plugin
 *.versionsBackup
+/idea-plugin/.intellijPlatform
