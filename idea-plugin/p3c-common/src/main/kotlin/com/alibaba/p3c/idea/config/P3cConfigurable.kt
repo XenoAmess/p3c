@@ -22,6 +22,7 @@ import com.intellij.codeInsight.daemon.DaemonCodeAnalyzer
 import com.intellij.openapi.options.Configurable
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.psi.PsiManager
 import java.awt.BorderLayout
 import java.awt.GridBagConstraints
 import java.awt.GridBagLayout
@@ -137,7 +138,10 @@ class P3cConfigurable(private val project: Project) : Configurable {
         if (wasGloballyDisabled != config.pluginGloballyDisabled ||
             wasRealtimeEnabled != config.realtimeInspectionEnabled) {
             FileEditorManager.getInstance(project).openFiles.forEach { file ->
-                DaemonCodeAnalyzer.getInstance(project).restart(file)
+                val psiFile = PsiManager.getInstance(project).findFile(file)
+                if (psiFile != null) {
+                    DaemonCodeAnalyzer.getInstance(project).restart(psiFile)
+                }
             }
         }
     }

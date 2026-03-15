@@ -28,6 +28,7 @@ import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.components.ServiceManager
 import com.intellij.openapi.fileEditor.FileEditorManager
+import com.intellij.psi.PsiManager
 import icons.P3cIcons
 
 /**
@@ -79,7 +80,10 @@ class ToggleProjectInspectionAction : AnAction() {
 
         // Refresh all open files to apply changes immediately
         FileEditorManager.getInstance(project).openFiles.forEach { file ->
-            DaemonCodeAnalyzer.getInstance(project).restart(file)
+            val psiFile = PsiManager.getInstance(project).findFile(file)
+            if (psiFile != null) {
+                DaemonCodeAnalyzer.getInstance(project).restart(psiFile)
+            }
         }
     }
 
