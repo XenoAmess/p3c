@@ -29,7 +29,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
-        <ul>2.3.0.0x-beta
+        <ul>2.3.0-beta
             <li>(unstable) add config to enable/disable background analyzing</li>
         </ul>
         <ul>2.2.4.3x

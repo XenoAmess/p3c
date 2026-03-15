@@ -250,7 +250,7 @@ Run with enforcement:
 
 ## Version Information
 
-- **Current Version**: 2.3.0.0x-beta
+- **Current Version**: 2.3.0-beta
 - **Group ID**: `com.xenoamess.p3c`
 - **Artifact ID**: `p3c-pmd`
 
@@ -260,7 +260,7 @@ Run with enforcement:
 <dependency>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.3.0.0x-beta</version>
+    <version>2.3.0-beta</version>
 </dependency>
 ```
 

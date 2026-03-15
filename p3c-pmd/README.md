@@ -11,7 +11,7 @@
 <dependency>
     <groupId>com.xenoamess.p3c</groupId>
     <artifactId>p3c-pmd</artifactId>
-    <version>2.3.0.0x-beta</version>
+    <version>2.3.0-beta</version>
 </dependency>
 ```
 ### <font color="green">Gradle</font>
