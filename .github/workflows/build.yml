@@ -15,7 +15,10 @@
 
 name: Java CI
 
-on: [ push ]
+on:
+  push:
+    branches: [ xenoamess_maintain_fork ]
+  pull_request:
 
 jobs:
   build:

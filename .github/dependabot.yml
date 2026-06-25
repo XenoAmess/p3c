@@ -18,18 +18,45 @@ updates:
   - package-ecosystem: "maven"
     directory: "/p3c-pmd/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Shanghai"
     target-branch: "xenoamess_maintain_fork"
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
+    labels:
+      - "dependencies"
+      - "java"
+
   - package-ecosystem: "gradle"
     directory: "/idea-plugin/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Shanghai"
     target-branch: "xenoamess_maintain_fork"
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps-dev)"
+    labels:
+      - "dependencies"
+      - "idea-plugin"
+
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+      day: "monday"
+      time: "04:00"
+      timezone: "Asia/Shanghai"
     target-branch: "xenoamess_maintain_fork"
-    open-pull-requests-limit: 100
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "ci"
+    labels:
+      - "dependencies"
+      - "github_actions"
