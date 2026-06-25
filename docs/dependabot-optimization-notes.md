@@ -113,6 +113,30 @@ After pushing, the following were checked:
    This is the policy working as intended — a maven major bump that
    breaks the build was held back, not silently merged.
 
+### Final state (after the optimization completed)
+
+Auto-merged (4 PRs):
+
+| PR    | Ecosystem       | Bump                              | Type   | Merged at             |
+|-------|-----------------|-----------------------------------|--------|-----------------------|
+| #816  | github-actions  | actions/checkout 6→7              | MAJOR  | 2026-06-25T13:51:11Z  |
+| #819  | github-actions  | actions/cache 5→6                 | MAJOR  | 2026-06-25T14:16:58Z  |
+| #803  | github-actions  | dependabot/fetch-metadata 2→3     | MAJOR  | 2026-06-25T14:31:52Z  |
+| #812  | maven           | jackson-bom 2.21.4→2.22.0         | MINOR  | 2026-06-25T14:47:19Z  |
+
+Held for human review (2 PRs):
+
+| PR    | Ecosystem | Bump                                  | Reason                                  |
+|-------|-----------|---------------------------------------|-----------------------------------------|
+| #776  | maven     | pmd-core 6.55.0→7.22.0                | MAJOR (left for human review by policy) |
+| #734  | maven     | maven-pmd-plugin 3.21.2→3.28.0        | CI failure: needs PMD 7 from #776 first |
+
+PR #734 demonstrates the system catching a real problem: a maven minor
+bump that depends on a parallel maven major bump. The auto-merge was
+enabled (so it's "ready" to merge), but the build failed because
+`pmd-core` is still at 6.55.0. Once #776 is merged, dependabot will
+rebase #734, CI will pass, and the auto-merge will fire.
+
 ## Operational notes
 
 - The `auto-merge.yml` workflow's `user.login` check works today
