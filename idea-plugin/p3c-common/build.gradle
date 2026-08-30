@@ -60,7 +60,7 @@ dependencies {
         bundledPlugins(['com.intellij.java'])
     }
 
-    implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.33'
+    implementation group: 'org.freemarker', name: 'freemarker', version: '2.3.35'
     implementation("com.xenoamess.p3c:p3c-pmd:$plugin_version") {
         exclude group: 'org.apache.logging.log4j'
         exclude group: 'org.slf4j'
