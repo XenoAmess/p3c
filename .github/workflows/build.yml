@@ -54,7 +54,7 @@ jobs:
         uses: actions/setup-java@v5.6.0
         with:
           java-version: ${{ matrix.java }}
-          distribution: adopt
+          distribution: temurin
       - name: Build Build Build!
         run: |
           cd ./p3c-pmd
