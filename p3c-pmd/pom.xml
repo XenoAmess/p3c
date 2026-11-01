@@ -47,7 +47,7 @@
         <maven-deploy-plugin.version>3.2.0</maven-deploy-plugin.version>
         <maven-surefire-plugin.version>3.6.1</maven-surefire-plugin.version>
         <animal-sniffer-maven-plugin.version>1.28</animal-sniffer-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.15</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.16</jacoco-maven-plugin.version>
         <log4j.version>2.26.1</log4j.version>
         <slf4j.version>2.0.0</slf4j.version>
         <!--enforce-->
